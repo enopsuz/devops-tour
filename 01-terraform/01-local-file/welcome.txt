@@ -1,0 +1,1 @@
+DevOps Tour - 1-kun: Terraform bilan ilk qadam qo'yildi!

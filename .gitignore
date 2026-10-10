@@ -1,6 +1,5 @@
 # Terraform kesh va provayderlar
 .terraform/
-.terraform.lock.hcl
 
 # State fayllari (juda muhim: maxfiy ma'lumotlar bo'lishi mumkin)
 *.tfstate
