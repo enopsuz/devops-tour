@@ -1,0 +1,20 @@
+# Terraform kesh va provayderlar
+.terraform/
+.terraform.lock.hcl
+
+# State fayllari (juda muhim: maxfiy ma'lumotlar bo'lishi mumkin)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# O'zgaruvchilar (secrets saqlanishi mumkin)
+*.tfvars
+*.tfvars.json
+
+# Crash loglar
+crash.log
+crash.*.log
+
+# Kalitlar va sertifikatlar
+*.pem
+*.key
