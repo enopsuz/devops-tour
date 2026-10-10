@@ -73,7 +73,7 @@ Statik koddan dinamik kodga o'tish: `variables.tf` (parol, port, versiya) va `ou
 
 ## 🗺️ Reja va Mavzular Xaritasi
 - [ ] **01-terraform** — Infrastructure as Code (IaC) asoslari
-  - [ ] `01-docker-postgres` — Docker provayderi: Network, Volume va PostgreSQL
+  - [x] `01-docker-postgres` — Docker provayderi: Network, Volume va PostgreSQL
   - [ ] `02-variables-outputs` — O'zgaruvchilar va maxfiy ma'lumotlar
   - [ ] `03-lifecycle-graph` — Resurslar bog'liqligi va hayot sikli
   - [ ] `04-state-backend` — Remote State va S3/GCS backend

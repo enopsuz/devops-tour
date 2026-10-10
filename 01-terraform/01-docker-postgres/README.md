@@ -1,53 +1,23 @@
-# 🐘 Lab 01: Docker Provayderi va PostgreSQL Infratuzilmasi
+# 📅 #1 (2026-10-10): Docker Provayderi, PostgreSQL va Resurslar to'qnashuvi
 
-> **"Ushbu infratuzilma odatiy 3-qavatli (3-tier) veb-ilova (Frontend, Backend API va PostgreSQL) arxitekturasi uchun mo'ljallangan."**
-
-Ushbu laboratoriyada biz `hashicorp/local` kabi o'yinchoq misollardan voz kechib, to'g'ridan-to'g'ri haqiqiy infratuzilma primitivlari bilan ishlaymiz:
-- Alohida izolyatsiyalangan bridge tarmoq (`docker_network`)
-- Ma'lumotlarni doimiy saqlovchi disk hajmi (`docker_volume`)
-- Rasmiy `postgres:16-alpine` bazasi konteyneri (`docker_container`)
-
----
-
-## 🎯 Vazifa (25 daqiqalik amaliyot)
-
-`main.tf` faylini yaratib, quyidagi resurslarni deklarativ tarzda sozlang:
-1. **Provider:** `kreuzwerker/docker` (versiya: `~> 3.0.2`)
-2. **Resurslar:**
-   - `docker_network` — masalan `app_net`
-   - `docker_volume` — masalan `db_data`
-   - `docker_image` — `postgres:16-alpine` (keep_locally: true)
-   - `docker_container` — `postgres_db`:
-     - Tarmoqqa ulanish
-     - Volume mount qilish (`/var/lib/postgresql/data`)
-     - Port forward (`5432:5432`)
-     - Environment o'zgaruvchilari (`POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`)
-
-Tekshirish buyruqlari:
-```bash
-terraform init
-terraform fmt
-terraform validate
-terraform plan
-terraform apply
-```
-
----
-
-## 📋 5 Daqiqalik Xulosa (Nana 25+5)
-
-### 📅 1-Kun: Docker Provayderi va PostgreSQL
-
-#### 1. Nima qildim? (What did I build?)
-- 
+## 1. Nima qildim? (What did I build?)
+- Terraform orqali `kreuzwerker/docker` registryning `4.6.0` versiyasini sinab ko'rdim.
+- Loyihaga muvoviq DB ni ko'tarib oldim. Buning uchun menga kerak bo'ldi:
+  - docker_network
+  - docker_volume
+  - docker_image
+  - va yuqoridagilarni o'zida jam qilgan docker_container
 
 #### 2. Qanday muammoga duch keldim va uni qanday yechdim? (Blocker & Solution)
-- **Muammo:** 
-- **Sabab:** 
-- **Yechim:** 
+- **1-Muammo (Noto'g'ri mount yo'li):** `container_path = "/var/lib/postgres/data"` deb yozilganda, rasmiy Postgres imijida PGDATA `/var/lib/postgresql/data` bo'lganligi sababli, Docker nomsiz (anonymous) volume ochib yubordi va bizning nomli hajmimiz bo'sh qolib ketdi.
+  - *Yechim:* Yo'lni `/var/lib/postgresql/data` ga to'g'irladim. Terraform buni ishlayotgan konteynerda o'zgartira olmagani uchun konteynerni o'chirib qayta qurdi (`forces replacement`).
+- **2-Muammo (`in_use` timeout):** Hajmni o'chirish paytida `timeout while waiting for state to become 'removed' (last state: 'in_use')` xatosi yuz berdi.
+  - *Sabab:* 5 hafta oldin yaratilgan va to'xtatilgan (`Exited`) eski konteyner ushbu volume'ni haligacha ushlab turgan ekan. Docker to'xtatilgan konteyner bog'langan volume'ni ham o'chirishga ruxsat bermaydi.
+  - *Yechim:* Eski konteynerni `docker rm` bilan tozaladim va kelgusida bunday to'qnashuvlar (naming collisions) bo'lmasligi uchun resurslarga `tour-` prefiksini berdim.
 
 #### 3. Asosiy tushungan g'oyam (Core Concept / Feynman)
-- 
+- Dockerni faqatgina compose orqaligini emas terraform orqaliham ko'tarish mumkinligini bildim. Buning qanchalik best practice ekanligi vaqt o'tib ma'lum bo'ladi;
+- Shuningdek network, volume kabi resurslarni yaratishda oldingi yaratilganlarni hisobga olgan holda nom berish kerakligini bilib oldim;
 
 #### 4. Ertaga navbatdagi qadamim nima? (Next Step)
-- 
+- Statik qiymatlardan parametrlarga o'tish: `variables.tf` (parol va portlarni o'zgaruvchiga chiqarish, `sensitive = true`) va `outputs.tf` (DB ulanish parametrlarini chiqarish).
