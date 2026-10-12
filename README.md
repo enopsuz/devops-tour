@@ -72,13 +72,14 @@ Statik koddan dinamik kodga o'tish: `variables.tf` (parol, port, versiya) va `ou
 ---
 
 ## 🗺️ Reja va Mavzular Xaritasi
-- [ ] **01-terraform** — Infrastructure as Code (IaC) asoslari
-  - [x] `01-docker-postgres` — Docker provayderi: Network, Volume va PostgreSQL
-  - [ ] `02-variables-outputs` — O'zgaruvchilar va maxfiy ma'lumotlar
-  - [ ] `03-lifecycle-graph` — Resurslar bog'liqligi va hayot sikli
-  - [ ] `04-state-backend` — Remote State va S3/GCS backend
-  - [ ] `05-modules` — Modullar va Dynamic bloklar
-  - [ ] `06-hetzner-cloud` — Real Bulut VM provayderi
+- [ ] **01-terraform** — Infrastructure as Code (IaC) asoslari (Hetzner Cloud)
+  - [x] `01-intro` — Hetzner Cloud: Network, Subnets va Server VM
+  - [ ] `02-variables-outputs` — O'zgaruvchilar, maxfiy ma'lumotlar va chiqishlar
+  - [ ] `03-lifecycle-graph` — Xavfsizlik devori (Firewall), bog'liqliklar va hayot sikli
+  - [ ] `04-state-backend` — Remote State va S3/Object Storage backend
+  - [ ] `05-modules` — Qayta ishlatiluvchi modullar
+  - [ ] `06-cloud-init-provisioner` — Avtomatlashtirish: Docker va tizim provayding
+  - [ ] `07-todo-app-infra` — Todo-App uchun to'liq Cloud Infratuzilmasi (Capstone Project)
 - [ ] **02-ansible** — Configuration Management
 - [ ] **03-docker** — Konteynerlash chuqur
 - [ ] **04-kubernetes** — Orchestration va Klaster boshqaruvi
