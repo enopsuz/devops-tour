@@ -20,4 +20,4 @@
 - Shuningdek network, volume kabi resurslarni yaratishda oldingi yaratilganlarni hisobga olgan holda nom berish kerakligini bilib oldim;
 
 #### 4. Ertaga navbatdagi qadamim nima? (Next Step)
-- Statik qiymatlardan parametrlarga o'tish: `variables.tf` (parol va portlarni o'zgaruvchiga chiqarish, `sensitive = true`) va `outputs.tf` (DB ulanish parametrlarini chiqarish). Va davom etadi.
+- Statik qiymatlardan parametrlarga o'tish: `variables.tf` (parol va portlarni o'zgaruvchiga chiqarish, `sensitive = true`) va `outputs.tf` (DB ulanish parametrlarini chiqarish).
