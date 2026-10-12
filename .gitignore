@@ -1,19 +1,12 @@
-# Terraform kesh va provayderlar
-.terraform/
+.obsidian/
 
-# State fayllari (juda muhim: maxfiy ma'lumotlar bo'lishi mumkin)
+# Terraform global ignores across all course labs
+**/.terraform/
 *.tfstate
 *.tfstate.*
 *.tfstate.backup
-
-# O'zgaruvchilar (secrets saqlanishi mumkin)
 *.tfvars
 *.tfvars.json
-
-# Crash loglar
+*tfplan*
 crash.log
 crash.*.log
-
-# Kalitlar va sertifikatlar
-*.pem
-*.key
