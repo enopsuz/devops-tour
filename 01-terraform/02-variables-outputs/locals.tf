@@ -16,7 +16,7 @@ locals {
   }
 
   common_labels = {
-    project     = local.project
+    project     = var.project
     environment = var.environment
     managed_by  = "terraform"
   }
