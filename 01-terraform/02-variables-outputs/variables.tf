@@ -18,21 +18,28 @@ variable "environment" {
   }
 }
 
-variable "db_server_type" {
-  type        = string
-  description = "DB server uchun Hetzner server turi (masalan cx23)"
+variable "db_server" {
+  type = object({
+    server_type = string
+  })
   validation {
-    condition     = contains(["cx23", "cx33", "cx43", "cx53"], var.db_server_type)
-    error_message = "db_server_type must be one of: cx23, cx33, cx43, cx53"
+    condition     = contains(["cx23", "cx33", "cx43", "cx53"], var.db_server.server_type)
+    error_message = "db_server.server_type must be one of: cx23, cx33, cx43, cx53"
   }
 }
 
-variable "app_server_type" {
-  type        = string
-  description = "App server uchun Hetzner server turi (masalan cx23)"
+variable "app_server" {
+  type = object({
+    server_type = string
+    count       = optional(number, 1)
+  })
   validation {
-    condition     = contains(["cx23", "cx33", "cx43", "cx53"], var.app_server_type)
-    error_message = "app_server_type must be one of: cx23, cx33, cx43, cx53"
+    condition     = contains(["cx23", "cx33", "cx43", "cx53"], var.app_server.server_type)
+    error_message = "app_server.server_type must be one of: cx23, cx33, cx43, cx53"
+  }
+  validation {
+    condition     = var.app_server.count > 0
+    error_message = "app_server.count must be greater than 0"
   }
 }
 

@@ -1,5 +1,10 @@
 project=""
 environment="prod"
-db_server_type="cx33"
-app_server_type="cx23"
 ssh_public_key=""
+db_server = {
+  server_type = "cx33"
+}
+app_server = {
+  server_type = "cx23"
+  count = 2
+}

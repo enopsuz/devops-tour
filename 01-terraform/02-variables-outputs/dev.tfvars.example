@@ -1,5 +1,9 @@
 project=""
 environment="dev"
-db_server_type="cx23"
-app_server_type="cx23"
 ssh_public_key=""
+db_server = {
+  server_type = "cx23"
+}
+app_server = {
+  server_type = "cx23"
+}

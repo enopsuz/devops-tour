@@ -1,8 +1,8 @@
 resource "hcloud_server" "app_server" {
-  count       = var.environment == "prod" ? 2 : 1
+  count       = var.app_server.count
   name        = "${local.app.name}-${count.index}"
   image       = data.hcloud_image.ubuntu_26.id
-  server_type = var.app_server_type
+  server_type = var.app_server.server_type
   location    = local.service.location
   public_net {
     ipv4_enabled = true
@@ -21,7 +21,7 @@ resource "hcloud_server" "app_server" {
 resource "hcloud_server" "db_server" {
   name        = local.db.name
   image       = data.hcloud_image.ubuntu_26.id
-  server_type = var.db_server_type
+  server_type = var.db_server.server_type
   location    = local.service.location
   public_net {
     ipv4_enabled = false
