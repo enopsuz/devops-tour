@@ -62,53 +62,46 @@ terraform destroy            # sessiya oxirida majburiy
 
 ## 🎯 O'rganish Usuli: 25 + 5 Tizimi
 
-Har bir o'rganish sessiyasi qat'iy ikkita bo'lakka bo'linadi:
-1. **25 daqiqa (Qo'lda amaliyot):** Faqat terminal, kod va arxitektura. Passiv video tomosha qilinmaydi — faqat mustaqil qurish va xatolar bilan kurashish.
-2. **5 daqiqa (Qayd va xulosa):** Taymer qo'yiladi va sessiyadagi amaliy tajriba quyidagi 4 ta savol asosida qisqa hujjatlashtiriladi.
+**Kundalik odat:** har kuni bitta sessiya — uzoq, vaqti-vaqti bilan bo'ladigan "marafon"lar o'rniga qisqa, lekin uzluksiz amaliyot. DevOps bilimi bir-birining ustiga quriladi, tanaffusda esa kontekst so'nadi.
 
-**25 + 5 — sessiya birligi, laboratoriya birligi emas.** Bitta laboratoriya odatda bir necha sessiya oladi.
+1. **25 daqiqa (Qo'lda amaliyot):** Faqat terminal, kod va arxitektura. Passiv video tomosha qilinmaydi. Vaqt tugashi bilan to'xtaladi — vazifa yarmida qolsa ham.
+2. **5 daqiqa (Qayd va xulosa):** Taymer qo'yiladi va sessiya quyidagi shablon bo'yicha qisqa hujjatlashtiriladi. 5 daqiqa tugashi bilan bu ham to'xtatiladi.
+
+**Bitta sessiya = bitta kun.** Bitta laboratoriya bir necha sessiyadan iborat; sessiyalar xaritasi laboratoriya papkasidagi `ROADMAP.md`da.
 
 ### 📋 Shablon
 
-Har bir laboratoriya papkasidagi `README.md` fayli quyidagi shablon asosida to'ldiriladi:
+Har sessiya laboratoriya papkasidagi `README.md`ga **yangi yozuv** sifatida qo'shiladi (jami ~6–8 qator, jadvalsiz):
 
-```markdown
-### 📅 [Sana]: [Mavzu nomi]
+````markdown
+### 📅 [Sana] · Sessiya #[N] · [Mavzu]
 
-#### 1. Nima qilindi? (What was built?)
-- [1-2 jumlada sessiyada bajarilgan aniq amaliy ish: qaysi resurs yoki vosita sozlandi]
-
-#### 2. Qanday muammoga duch kelindi va u qanday yechildi? (Blocker & Solution)
-- **Muammo:** [Qaysi buyruq yoki konfiguratsiya xato berdi?]
-- **Sabab:** [Xatoning tub sababi nima edi?]
-- **Yechim:** [Xato qanday bartaraf etildi?]
-
-#### 3. Asosiy tushunilgan g'oya (Core Concept / Feynman)
-- [Tushuncha junior dasturchiga 1 ta gap bilan qanday tushuntiriladi?]
-
-#### 4. Keyingi sessiyada nima qilinadi? (Next Step)
-- [Keyingi sessiya qaysi vazifadan boshlanadi?]
+**1. Nima qilindi?** [1–2 jumla]
 ```
+[Dalil: 1–3 qator terminal chiqishi — token, real IP va kalitlarsiz]
+```
+
+**2. Muammo → Sabab → Yechim:** [1 qator, yoki "Yo'q"]
+
+**3. Asosiy g'oya:** [1 jumla — junior dasturchiga qanday tushuntiriladi]
+
+**4. Keyingi qadam:** [keyingi sessiyaning birinchi harakati]
+````
 
 ### 💡 Namuna
 
-Shablon qanday to'ldirilishini ko'rsatuvchi umumiy misol:
-
-> ### 📅 2026-01-15: Terraform provayderini sozlash
+> ### 📅 2026-01-15 · Sessiya #1 · Terraform provayderini sozlash
 >
-> #### 1. Nima qilindi?
-> - Terraform loyihasi yaratildi, provayder versiyasi `required_providers` blokida qat'iy belgilandi va `terraform init` → `plan` → `apply` zanjiri sinab ko'rildi.
+> **1. Nima qilindi?** Provayder versiyasi `required_providers`da belgilandi, `init` → `plan` → `apply` zanjiri sinab ko'rildi.
+> ```
+> Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+> ```
 >
-> #### 2. Qanday muammoga duch kelindi va u qanday yechildi?
-> - **Muammo:** `.terraform.lock.hcl` fayli dastlab `.gitignore`ga kiritilgan edi.
-> - **Sabab:** Bu fayl — Go'dagi `go.sum` yoki Node'dagi `package-lock.json` kabi provayder versiyalari va xesh-summalarini qulflab turadi. Usiz har bir mashina provayderning boshqa versiyasini yuklab olishi mumkin.
-> - **Yechim:** Fayl `.gitignore`dan olib tashlandi va Git'ga commit qilindi — endi barcha jamoa a'zolari va CI runner'lar bir xil provayder versiyasidan foydalanadi.
+> **2. Muammo → Sabab → Yechim:** `.terraform.lock.hcl` `.gitignore`da edi → u `go.sum` kabi provayder versiyasi va hash'larini qulflaydi → fayl git'ga commit qilindi.
 >
-> #### 3. Asosiy tushunilgan g'oya
-> - Terraform — deklarativ: qanday buyruqlar ketma-ketligi bajarilishi emas, infratuzilmaning yakuniy holati yoziladi. Joriy holatdan yakuniy holatga qanday yetib borishni Terraform o'zi hisoblaydi.
+> **3. Asosiy g'oya:** Terraform deklarativ — buyruqlar ketma-ketligi emas, infratuzilmaning yakuniy holati yoziladi.
 >
-> #### 4. Keyingi sessiyada nima qilinadi?
-> - Kod ichidagi statik qiymatlar `variables.tf` ga chiqariladi, natijalar `outputs.tf` orqali ko'rsatiladi.
+> **4. Keyingi qadam:** qattiq yozilgan qiymatlarni `variables.tf`ga chiqarish.
 
 ---
 *Muallif: **EnOps** ([@enopsuz](https://github.com/enopsuz)) | Vebsayt: [enops.uz](https://enops.uz)*
